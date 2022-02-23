@@ -11,3 +11,6 @@ class ToDoUser(models.Model):
     email = models.EmailField(verbose_name='почта', max_length=128, unique=True)
     age = models.PositiveIntegerField(verbose_name='возраст', null=True)
     password = models.CharField(verbose_name='пароль', max_length=16)
+
+    def __str__(self):
+        return "{}".format(self.username)
