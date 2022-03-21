@@ -1,0 +1,26 @@
+[
+  {
+    "username": "djangoRF",
+    "first_name": "rf",
+    "last_name": "rf",
+    "email": "drf@gb.local.ru",
+    "age": 18,
+    "password": "geekbrains"
+  },
+  {
+    "username": "djangoRF1",
+    "first_name": "rf1",
+    "last_name": "rf1",
+    "email": "drf1@gb.local.ru",
+    "age": 18,
+    "password": "geekbrains"
+  },
+  {
+    "username": "djangoRF2",
+    "first_name": "rf2",
+    "last_name": "rf2",
+    "email": "drf2@gb.local.ru",
+    "age": 18,
+    "password": "geekbrains"
+  }
+]
