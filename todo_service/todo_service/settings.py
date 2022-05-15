@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'usersapp',
+    'todoapp',
     'authors',
     'rest_framework',
 ]
@@ -128,6 +129,15 @@ STATIC_URL = '/static/'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.StaticHTMLRenderer',
+        # 'rest_framework.renderers.AdminRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
