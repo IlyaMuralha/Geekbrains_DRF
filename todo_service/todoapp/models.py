@@ -6,7 +6,7 @@ from usersapp.models import ToDoUser
 class Project(models.Model):
     uid = models.UUIDField(primary_key=True, default=uuid4)
     name = models.CharField(verbose_name='название проекта', max_length=64)
-    url = models.CharField(verbose_name='репозиторий', max_length=64)
+    link = models.CharField(verbose_name='репозиторий', max_length=64)
     users = models.ManyToManyField(ToDoUser)
 
     def __str__(self):
@@ -14,7 +14,7 @@ class Project(models.Model):
 
 
 class ToDo(models.Model):
-    projects = models.ManyToManyField(Project)
+    project = models.ForeignKey(Project, null=True, on_delete=models.CASCADE)
     user = models.ForeignKey(ToDoUser, null=True, blank=False, on_delete=models.SET_NULL)
     title = models.CharField(verbose_name='заголовок', max_length=64)
     text = models.TextField(blank=True)
