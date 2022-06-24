@@ -12,7 +12,6 @@ class SimpleProjectModelSerializer(ModelSerializer):
 
 class ProjectModelSerializer(HyperlinkedModelSerializer):
     users = StringRelatedField(many=True)
-    # todo = StringRelatedField(many=True)
 
     class Meta:
         model = Project
@@ -20,7 +19,7 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
 
 
 class ToDoModelSerializer(HyperlinkedModelSerializer):
-    user = SimpleAuthorModelSerializer()
+    user = SimpleAuthorModelSerializer(read_only=True)
     project = SimpleProjectModelSerializer()
 
     class Meta:

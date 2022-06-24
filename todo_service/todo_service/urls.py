@@ -3,15 +3,15 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from todoapp.views import ProjectModelViewSet, ToDoModelViewSet
-from usersapp.views import ToDoUserModelViewSet
+from usersapp.views import ToDoUserCustomViewSet
 from authors.views import AuthorModelViewSet, BiographyModelViewSet, ArticleModelViewSet, BookModelViewSet
 
 route = DefaultRouter()
-route.register('todousers', ToDoUserModelViewSet)
-route.register('authors', AuthorModelViewSet)
-route.register('biography', BiographyModelViewSet)
-route.register('book', BookModelViewSet)
-route.register('article', ArticleModelViewSet)
+route.register('todousers', ToDoUserCustomViewSet)
+# route.register('authors', AuthorModelViewSet)
+# route.register('biography', BiographyModelViewSet)
+# route.register('book', BookModelViewSet)
+# route.register('article', ArticleModelViewSet)
 route.register('project', ProjectModelViewSet)
 route.register('todo', ToDoModelViewSet)
 
