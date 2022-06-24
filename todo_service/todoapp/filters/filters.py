@@ -3,11 +3,12 @@ from ..models import Project, ToDo
 
 
 class ToDoFilter(filters.FilterSet):
-    project = filters.CharFilter(lookup_expr='contains')
+    project_name = filters.CharFilter(field_name='project__name', lookup_expr='contains')
 
     class Meta:
         model = ToDo
-        fields = ['project']
+        # fields = ['project', 'project_name']
+        fields = ['project_name']
 
 
 class ProjectFilter(filters.FilterSet):
