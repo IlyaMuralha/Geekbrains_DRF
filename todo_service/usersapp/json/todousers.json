@@ -22,5 +22,13 @@
     "email": "drf2@gb.local.ru",
     "age": 18,
     "password": "geekbrains"
+  },
+  {
+    "username": "djangoRF3",
+    "first_name": "rf3",
+    "last_name": "rf3",
+    "email": "drf3@gb.local.ru",
+    "age": 18,
+    "password": "geekbrains"
   }
 ]

@@ -6,4 +6,4 @@ from .models import ToDoUser
 class ToDoUserModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = ToDoUser
-        fields = '__all__'
+        fields = ('url', 'username', 'first_name', 'last_name', 'email',)
