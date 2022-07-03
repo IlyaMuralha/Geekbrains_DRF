@@ -1,16 +1,15 @@
 from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, StringRelatedField
-
-from authors.serializers import SimpleAuthorModelSerializer
 from todoapp.models import Project, ToDo
+from usersapp.serializers import SimpleTodouserModelSerializer
 
 
 class SimpleProjectModelSerializer(ModelSerializer):
     class Meta:
         model = Project
-        fields = ['name']
+        fields = ['uid', 'name']
 
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
+class ProjectModelSerializer(ModelSerializer):
     users = StringRelatedField(many=True)
 
     class Meta:
@@ -19,7 +18,7 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
 
 
 class ToDoModelSerializer(HyperlinkedModelSerializer):
-    user = SimpleAuthorModelSerializer(read_only=True)
+    user = SimpleTodouserModelSerializer(read_only=True)
     project = SimpleProjectModelSerializer()
 
     class Meta:

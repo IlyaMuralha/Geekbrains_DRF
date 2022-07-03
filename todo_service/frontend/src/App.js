@@ -9,6 +9,7 @@ import UserList from "./components/todousers/TodoUser";
 import Footer from "./components/footer/Footer";
 import ProjectList from "./components/todoprojects/ToDoProjects";
 import ToDoList from "./components/todoes/ToDoes";
+import ProjectToDoList from "./components/todofromproject/TodoFromProject";
 
 const NotFound404 = ({location}) => {
     return (
@@ -29,7 +30,7 @@ class App extends Component {
     set_token(token) {
         const cookies = new Cookies()
         cookies.set('token', token)
-        this.setState({'token': token}, ()=>this.load_data())
+        this.setState({'token': token}, () => this.load_data())
     }
 
     is_authenticated() {
@@ -43,7 +44,7 @@ class App extends Component {
     get_token_from_storage() {
         const cookies = new Cookies()
         const token = cookies.get('token')
-        this.setState({'token': token}, ()=>this.load_data())
+        this.setState({'token': token}, () => this.load_data())
     }
 
 
@@ -98,7 +99,6 @@ class App extends Component {
 
     componentDidMount() {
         this.get_token_from_storage()
-        this.load_data()
     }
 
     render() {
@@ -129,6 +129,7 @@ class App extends Component {
                         <Route exact path='/' component={() => <UserList todousers={this.state.todousers}/>}/>
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todo' component={() => <ToDoList todoes={this.state.todoes}/>}/>
+                        <Route path="/projects/:id"><ProjectToDoList todoes={this.state.todoes}/></Route>
                         <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
                         <Route component={NotFound404}/>

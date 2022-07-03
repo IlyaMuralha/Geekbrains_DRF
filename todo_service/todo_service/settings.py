@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
     'usersapp',
     'todoapp',
-    'authors',
 ]
 
 MIDDLEWARE = [

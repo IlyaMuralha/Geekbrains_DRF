@@ -1,11 +1,12 @@
 import {Table} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 const ProjectItem = ({project}) => {
     return (
         <tbody>
             <tr>
                 <td>
-                    {project.name}
+                    <Link to={`projects/${project.uid}`}>{project.name}</Link>
                 </td>
                 <td>
                     {project.users}
