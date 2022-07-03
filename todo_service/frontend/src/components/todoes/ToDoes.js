@@ -5,10 +5,10 @@ const ToDoItem = ({todo}) => {
         <tbody>
             <tr>
                 <td>
-                    {todo.user}
+                    {todo.user.firstName}
                 </td>
                 <td>
-                    {todo.projectName}
+                    {todo.project.name}
                 </td>
                 <td>
                     {todo.title}
@@ -29,7 +29,7 @@ const ToDoList = ({todoes}) => {
                     User
                 </th>
                 <th>
-                    ProjectName
+                    Project Name
                 </th>
                 <th>
                     Title
@@ -38,7 +38,7 @@ const ToDoList = ({todoes}) => {
                     Text
                 </th>
             </thead>
-            {todoes.map((todo) => <ToDoItem todo={todo} key={todo.id}/>)}
+            {todoes.map((todo, index) => <ToDoItem todo={todo} key={index}/>)}
         </Table>
     )
 }

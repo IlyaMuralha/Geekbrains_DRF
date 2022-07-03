@@ -32,7 +32,7 @@ const ProjectList = ({projects}) => {
                     Link
                 </th>
             </thead>
-            {projects.map((project) => <ProjectItem project={project} key={project.id}/>)}
+            {projects.map((project, index) => <ProjectItem project={project} key={index}/>)}
         </Table>
     )
 }

@@ -1,3 +1,4 @@
+import React from 'react'
 import {Table} from "react-bootstrap";
 
 const UserItem = ({todouser}) => {
@@ -8,10 +9,10 @@ const UserItem = ({todouser}) => {
                     {todouser.username}
                 </td>
                 <td>
-                    {todouser.first_name}
+                    {todouser.firstName}
                 </td>
                 <td>
-                    {todouser.last_name}
+                    {todouser.lastName}
                 </td>
                 <td>
                     {todouser.age}
@@ -44,7 +45,7 @@ const UserList = ({todousers}) => {
                     Email
                 </th>
             </thead>
-            {todousers.map((todouser) => <UserItem todouser={todouser} key={todouser.id}/>)}
+            {todousers.map((todouser, index) => <UserItem todouser={todouser} key={index}/>)}
         </Table>
     )
 }

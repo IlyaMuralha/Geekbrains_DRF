@@ -126,6 +126,7 @@ STATIC_URL = '/static/'
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'http://localhost:3001',
 ]
 
 # Default primary key field type
@@ -160,7 +161,7 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissions'
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [

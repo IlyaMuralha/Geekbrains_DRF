@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import UserList from "./components/todousers/TodoUser";
-import Footer from "./components/footer/Footer";
-import TodoService from "./services/TodoService";
-import ProjectList from "./components/todoprojects/ToDoProjects";
-import ToDoList from "./components/todoes/ToDoes";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
 import {Container, Nav, Navbar} from "react-bootstrap";
+import axios from "axios";
+import LoginForm from "./components/auth/Auth";
+import UserList from "./components/todousers/TodoUser";
+import Footer from "./components/footer/Footer";
+import ProjectList from "./components/todoprojects/ToDoProjects";
+import ToDoList from "./components/todoes/ToDoes";
 
 const NotFound404 = ({location}) => {
     return (
@@ -19,43 +19,34 @@ const NotFound404 = ({location}) => {
 
 class App extends Component {
     state = {
-        todousers: [],
-        projects: [],
-        todoes: [],
+        'todousers': [],
+        'projects': [],
+        'todoes': [],
     }
 
-    todoApiService = new TodoService()
+
+    load_data = () => {
+        axios.get('http://127.0.0.1:8000/api/project/')
+            .then(response => {
+                console.log(response.data.results)
+                this.setState({projects: response.data.results})
+            }).catch(error => console.log(error))
+
+        axios.get('http://127.0.0.1:8000/api/todousers/')
+            .then(response => {
+                console.log(response.data.results)
+                this.setState({todousers: response.data.results})
+            }).catch(error => console.log(error))
+
+        axios.get('http://127.0.0.1:8000/api/todo/')
+            .then(response => {
+                console.log(response.data.results)
+                this.setState({todoes: response.data.results})
+            }).catch(error => console.log(error))
+    }
 
     componentDidMount() {
-        this.todoApiService.getAllElements('project')
-            .then(this.onProjectListLoaded)
-            .catch(error => console.log(error))
-
-        this.todoApiService.getAllElements('todousers')
-            .then(this.onUserListLoaded)
-            .catch(error => console.log(error))
-
-        this.todoApiService.getAllElements('todo')
-            .then(this.onToDoListLoaded)
-            .catch(error => console.log(error))
-    }
-
-    onProjectListLoaded = (projects) => {
-        this.setState(
-            {projects: projects}
-        )
-    }
-
-    onToDoListLoaded = (todoes) => {
-        this.setState(
-            {todoes: todoes}
-        )
-    }
-
-    onUserListLoaded = (todousers) => {
-        this.setState(
-            {todousers: todousers}
-        )
+        this.load_data()
     }
 
     render() {
@@ -66,14 +57,17 @@ class App extends Component {
                         <Container>
                             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                             <Nav className="me-auto">
-                                <Nav.Link href="/">
+                                <Nav.Link href='/'>
                                     <Link to='/'>Users</Link>
                                 </Nav.Link>
-                                <Nav.Link href="">
+                                <Nav.Link href='/projects'>
                                     <Link to='/projects'>Projects</Link>
                                 </Nav.Link>
-                                <Nav.Link href="#pricing">
+                                <Nav.Link href='/todo'>
                                     <Link to='/todo'>ToDoes</Link>
+                                </Nav.Link>
+                                <Nav.Link href='/login'>
+                                    <Link to='/login'>Login</Link>
                                 </Nav.Link>
                             </Nav>
                         </Container>
@@ -82,6 +76,7 @@ class App extends Component {
                         <Route exact path='/' component={() => <UserList todousers={this.state.todousers}/>}/>
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todo' component={() => <ToDoList todoes={this.state.todoes}/>}/>
+                        <Route exact path='/login' component={() => <LoginForm/>}/>
                         <Route component={NotFound404}/>
                     </Switch>
                     <Footer/>
